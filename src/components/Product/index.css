@@ -1,0 +1,44 @@
+.pDescriptionCard{
+    width: calc(100% - 40px);
+    margin: 20px;
+    display: grid;
+    grid-template-areas: 
+    'card-bodyImg card-bodyPrice' 
+    'card-bodyInfo card-bodyInfo';
+}
+.card-bodyImg{
+    grid-area: card-bodyImg;
+    margin: 0px;
+}
+.card-bodyImg img{
+    margin: 0px;
+}
+
+.card-bodyPrice{
+    grid-area: card-bodyPrice;
+    margin-top: 15px;
+    margin-right: 15px;
+}
+.card-bodyInfo{
+    grid-area: card-bodyInfo;
+    margin-left: 15px;
+    margin-right: 15px;
+}
+.card-bodyInfo p{
+    font-size: large;
+}
+
+.btnAddCart{
+    width: 100%;
+}
+.btnAddCart p{
+    width: 100%;
+    text-align: center;
+}
+
+th{
+    font-size: x-large;
+}
+td{
+    font-size: x-large;
+}

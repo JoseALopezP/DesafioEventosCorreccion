@@ -1,0 +1,25 @@
+
+.container{
+    width: 100%;
+    border: 2px;
+    border-style: solid;
+    border-color: #008cba;
+}
+.productContainer{
+    max-width: none;
+    width: calc(100% - 40px);
+    margin: 20px;
+    border: 0ch;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.productContainer .card{
+    width: calc((100% - 50px) / 5);
+    margin: 5px;
+}
+
+.imgProductBlock img{
+    max-width: 100%;
+}

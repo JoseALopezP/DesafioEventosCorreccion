@@ -1,0 +1,9 @@
+.btn-primary{
+    display: flex;
+    flex-direction: row;
+    margin-right: 5px;
+    font-weight: 700;
+}
+.btn-primary p{
+    margin: 2px;
+}
