@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import ProductDetailImg from '../ProductExpoDetail/ProductDetailImg';
 import './index.css';
 import {ItemCount} from './ItemCount';
@@ -13,6 +13,7 @@ const ProductDetail = () => {
             setProductCard(product);
         })
     }, []);
+    const [completedPurchase, setCompletedPurchase] = useState(false);
 
     const [cartItemQuantity, setCartItemQuantity] = useState(window.localStorage.getItem('cartItemQuantity'))
 
@@ -34,6 +35,7 @@ const ProductDetail = () => {
     };
     const onAdd = (quantity) =>{
         testCart();
+        setCompletedPurchase(true);
         console.log(cartItemQuantity);
         setCartItemQuantity(parseInt(cartItemQuantity) + 1);
         console.log(cartItemQuantity);
@@ -60,7 +62,11 @@ const ProductDetail = () => {
                             </tr>
                         </tbody>
                     </table>
-                    <ItemCount onAdd={onAdd}/>
+                    {completedPurchase ? (
+                        <Link to='/Cart'><button className="btn btn-lg btn-primary btnAddCart" type="button"><p>Ir al Carrito</p></button></Link>
+                    ) : (
+                        <ItemCount onAdd={onAdd}/>
+                    )}
                     </div>
                 </div>
             </div>
