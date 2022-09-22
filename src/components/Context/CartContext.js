@@ -45,11 +45,15 @@ export const CartProvider = ({ defaultValue = [], children }) => {
         })
         return (Math.round(total * 100)/100);
     }
+    const getQuantity = () => {
+        return cart.length;
+    }
     const context = {
         clearCart,
         addToCart,
         removeFromCart,
         getTotal,
+        getQuantity,
         cart,
     }
     return(
