@@ -31,16 +31,26 @@ export const CartProvider = ({ defaultValue = [], children }) => {
         }
     }
     const removeFromCart = (id) => {
-        const auxCart = [...cart].filter(aux => aux.item.codigo === id);
+        console.log(id);
+        const auxCart = [...cart].filter(element => element.item.codigo !== id);
         setCart(auxCart)
     }
     const isInCart = (id) =>{
-        return cart.find((element) => element.item.codigo === id)
+        return cart.find(element => element.item.codigo === id)
+    }
+    const getTotal = () => {
+        let total = 0;
+        cart.forEach((element) => {
+            total += element.item.precio * (element.quantity / 100)
+        })
+        return (Math.round(total * 100)/100);
     }
     const context = {
         clearCart,
         addToCart,
-        removeFromCart
+        removeFromCart,
+        getTotal,
+        cart,
     }
     return(
         <>

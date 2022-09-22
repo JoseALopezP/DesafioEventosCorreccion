@@ -1,0 +1,7 @@
+.imgProductBlock{
+    max-width: 200px;
+    margin: 0px;
+}
+.imgProductBlock img{
+    max-height: 300px;
+}
