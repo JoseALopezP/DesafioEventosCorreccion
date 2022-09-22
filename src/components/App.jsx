@@ -3,10 +3,11 @@ import {BrowserRouter, Routes, Route} from 'react-router-dom';
 import NavBar from './NavBar';
 import ItemListContainer from './ItemListContainer';
 import ProductDetail from './ProductDetail';
+import { CartProvider } from './Context/CartContext';
 
 function App() {
       return (
-        <>
+        <CartProvider>
           <BrowserRouter>
             <NavBar/>
             <Routes>
@@ -15,7 +16,7 @@ function App() {
               <Route path='/cart'></Route>
             </Routes>
           </BrowserRouter>
-        </>
+        </CartProvider>
       ); 
     };
 

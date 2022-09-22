@@ -1,46 +1,32 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
+import { CartContext } from '../Context/CartContext';
 import { useParams, Link } from 'react-router-dom';
 import ProductDetailImg from '../ProductExpoDetail/ProductDetailImg';
 import './index.css';
 import {ItemCount} from './ItemCount';
 
-const ProductDetail = () => {
+const ProductDetail = (props) => {
     useEffect(() => {
         fetch('https://62e85fc093938a545be52125.mockapi.io/productos')
         .then(response => response.json())
         .then(data =>{
             const product = data.find(product => product.codigo == id)
-            setProductCard(product);
+            setProduct(product);
         })
     }, []);
+
+    const { addToCart } = useContext(CartContext);
+
     const [completedPurchase, setCompletedPurchase] = useState(false);
 
-    const [cartItemQuantity, setCartItemQuantity] = useState(window.localStorage.getItem('cartItemQuantity'))
-
-    const [product, setProductCard] = useState([]);
+    const [product, setProduct] = useState([]);
 
     const {id} = useParams();
 
-    const testCart = () =>{
-        let test = parseInt(window.localStorage.getItem('cartItemQuantity'));
-        if(isNaN(test)){
-        window.localStorage.setItem('cartItemQuantity', 1)
-        }
-    }
-    
-    const addToCart = (quantity) =>{
-        console.log(quantity);
-        const productCart = ({id: product.codigo, quant: quantity});
-        console.log('Se han agregado ', quantity, 'gr de ', product.tipo, product.marca)
-    };
+
     const onAdd = (quantity) =>{
-        testCart();
         setCompletedPurchase(true);
-        console.log(cartItemQuantity);
-        setCartItemQuantity(parseInt(cartItemQuantity) + 1);
-        console.log(cartItemQuantity);
-        window.localStorage.setItem('cartItemQuantity', parseInt(cartItemQuantity))
-        addToCart(quantity);
+        addToCart(product, quantity);
     }
     //Exporto una función onAdd al hijo que sería (itemCount) para generar el contador de productos.
     //También guardé la cantidad en localstorage para que aumente la cantidad del cartWidget caundo se actualiza la página
