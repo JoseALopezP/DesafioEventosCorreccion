@@ -15,10 +15,11 @@ export const CartProvider = ({ defaultValue = [], children }) => {
             const auxCart = [...cart];
             for(const aux of auxCart){
                 if(aux.item.codigo === item.codigo){
-                    aux.quantity += quantity;
+                    aux.quantity += parseInt(quantity);
                 }
             };
-            setCart(auxCart)
+            setCart(auxCart);
+            console.log(cart);
         }else{
             setCart([
                 ...cart, {
@@ -26,6 +27,7 @@ export const CartProvider = ({ defaultValue = [], children }) => {
                     quantity: parseInt(quantity)
                 }
             ]);
+            console.log(cart);
         }
     }
     const removeFromCart = (id) => {
@@ -37,7 +39,8 @@ export const CartProvider = ({ defaultValue = [], children }) => {
     }
     const context = {
         clearCart,
-        addToCart
+        addToCart,
+        removeFromCart
     }
     return(
         <>
