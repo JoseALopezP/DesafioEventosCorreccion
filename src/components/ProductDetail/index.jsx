@@ -4,25 +4,40 @@ import { useParams, Link } from 'react-router-dom';
 import ProductDetailImg from '../ProductExpoDetail/ProductDetailImg';
 import './index.css';
 import {ItemCount} from './ItemCount';
+import { collection, getDocs, query, where, d } from 'firebase/firestore';
+import db from '../../services/firebase';
 
 const ProductDetail = (props) => {
-    useEffect(() => {
-        fetch('https://62e85fc093938a545be52125.mockapi.io/productos')
-        .then(response => response.json())
-        .then(data =>{
-            const product = data.find(product => product.codigo == id)
-            setProduct(product);
-        })
-    }, []);
-
     const { addToCart } = useContext(CartContext);
-
     const [completedPurchase, setCompletedPurchase] = useState(false);
-
     const [product, setProduct] = useState([]);
-
     const {id} = useParams();
 
+/*     const getSelected = async(idProduct) =>{
+        try{
+            const document = doc(db,'Products', idProduct)
+            const response = await getDoc(document)
+            console.log(response)
+            const result = {id: response.id, ...response.data()}
+            setProduct(result)
+        } catch (error){
+            console.log(error)
+        }
+    } */
+    const getSelected = async(productId) => {
+        try {
+          const document = query(collection(db, "Products"), where("codigo", "==", productId))
+          const response = await getDocs(document)
+          const result = response.col((doc) => doc = { id: doc.id, ...doc.data()})
+          console.log(result)
+          setProduct(result)
+        } catch (error) {
+          console.log(error)
+        }
+      }
+    useEffect(() => {
+        getSelected(id)
+    }, [id]);
 
     const onAdd = (quantity) =>{
         setCompletedPurchase(true);
