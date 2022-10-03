@@ -2,9 +2,6 @@ import React, {useContext, useEffect, useState} from 'react';
 import { CartContext } from '../Context/CartContext';
 import ProductDetailImg from '../ProductExpoDetail/ProductDetailImg';
 import CartTotal from './CartTotal';
-import {Link} from 'react-router-dom';
-
-
 
 const CartView = () => {
     const {cart, removeFromCart} = useContext(CartContext);

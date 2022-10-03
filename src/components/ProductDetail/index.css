@@ -6,12 +6,20 @@
     'card-bodyImg card-bodyPrice' 
     'card-bodyInfo card-bodyInfo';
 }
+
 .card-bodyImg{
     grid-area: card-bodyImg;
     margin: 0px;
 }
 .card-bodyImg img{
     margin: 0px;
+}
+.pDescriptionCard .card-bodyImg .imgProductBlock{
+    width: 100%;
+    margin: 0;
+}
+.pDescriptionCard .card-bodyImg .imgProductBlock img{
+    width: 100%;
 }
 
 .card-bodyPrice{
